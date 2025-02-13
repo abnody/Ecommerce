@@ -1,0 +1,86 @@
+
+.product-slide {
+    display: flex;
+    margin-top: 10px;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+.product-slide::-webkit-scrollbar {
+    background-color: transparent;
+    height: 7px;
+    cursor: pointer;
+}
+
+.product-slide::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.product-slide li {
+    list-style: none;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+
+
+
+
+.slide-sec {
+    height: 100%;
+    width: 100%;
+    padding: 35px;
+    overflow-x: hidden;
+    background-color: white;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
+
+.l-btn,
+.r-btn {
+    background-color: rgb(255, 255, 255, 1);
+    height: 90px;
+    width: 50px;
+    text-align: center;
+    cursor: pointer;
+    top: 50%;
+    position: absolute;
+    border: 2px solid transparent;
+}
+
+
+.l-btn {
+    border-radius: 0 5px 5px 0;
+    left: 10px;
+}
+
+.r-btn {
+    border-radius: 5px 0 0 5px;
+    right: 10px;
+}
+
+.l-btn:hover {
+    border: 3px solid rgb(2, 150, 150);
+}
+
+.r-btn:hover {
+    border: 3px solid rgb(2, 150, 150);
+}
+
+.r-btn i,
+.l-btn i {
+    color: rgb(54, 54, 54);
+    position: absolute;
+    font-size: 30px;
+    top: 35%;
+    left: 12%;
+    right: 12%;
+}
+
+

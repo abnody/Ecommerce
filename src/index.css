@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap');
+
+
+body{
+  background: #3f3f3f;
+  /* font-family: var(--font-family); */
+}
+.nav{
+  z-index: 999;
+}
+:root {
+  --main-color: #0aad0a;
+  --light-color: #f0f3f2;
+  --shadow: rgba(145, 158, 171, .2) 0px 2px 4px -1px, rgba(145, 158, 171, .14) 0px 4px 5px 0px, rgba(145, 158, 171, .12) 0px 1px 10px 0px;
+  --font-family: 'Encode Sans Expanded', sans-serif;
+  --rating-color: #ffc908;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+.a:hover{
+  color: var(--main-color);
+}
+.rating-color {
+  color: var(--rating-color);
+}
+
+.prevent {
+  color: red !important;
+}
+
+.max-w-512{
+  max-width: 32rem;
+}
+.product{
+  transition: all 0.7s;
+}
+
+.product:hover {
+  transform: scale(1.2);
+  position: relative;
+  z-index: 333;
+}
+
+.product .btn {
+  transition:  opacity 0.7s , background-color 0.4s !important;
+  transform: translateY(-15%);
+  opacity: 0;
+}
+
+.product:hover .btn {
+  opacity: 1;
+  transition: opacity 1.4s ;
+}
+/* .btn:hover{ 
+  transition: ;
+} */
+
+.font-sm {
+  font-size: 14px;
+}
+
+.text-main {
+  color: var(--main-color);
+}
+
+.text-main-light {
+  color: var(--light-color);
+}
+
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 2em;
+  line-height: 1.2;
+}
+
+
+
+/* button{
+  @apply px-3.5 py-1.5 mx-1 my-2 rounded-lg bg-green-500 text-white hover:bg-green-600 focus:ring-2 focus:ring-green-700;
+  
+} */
+.active{
+  color: var(--main-color);
+
+}
+
+.card{
+  width: 100px;
+  height: 120px;
+}
+.brand-card{
+  width: 150px;
+  height: 120px;
+}
+.clicked{
+  background-color: #3f3f3f !important;
+  color:var(--main-color) !important;
+}
