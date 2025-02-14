@@ -41,8 +41,8 @@ export default function Cart() {
                 </tr>
             </thead>
             <tbody>
-            {(cart.data.products).map((product,index) =><>
-              <tr key={index} className="bg-[#b3b3b3] md:border-b cursor-pointer border-[#1a1a1a] hover:bg-[#8c8c8c] duration-300" >
+            {(cart.data.products).map((product,index) =><React.Fragment key={index}>
+              <tr className="bg-[#b3b3b3] md:border-b cursor-pointer border-[#1a1a1a] hover:bg-[#8c8c8c] duration-300" >
                   <td onClick={()=>navigate(`/productdetails/${product.product.id}`)} className="p-4">
                     <img src={product.product.imageCover} className="w-16 md:w-32 max-w-full max-h-full" alt={product.product.title}/>
                   </td>
@@ -93,7 +93,7 @@ export default function Cart() {
                 </td>
 
               </tr>
-              </>
+              </React.Fragment>
             )}
             
             </tbody>
