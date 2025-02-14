@@ -7,14 +7,15 @@ import { Outlet } from 'react-router-dom'
 export default function Layout() {
 
 	return <>
+		<div className='flex flex-col min-h-screen relative'>
+			<Navbar />
 
-		<Navbar />
+			<main className="container mt-4 pt-16 mx-auto flex-grow ">
+				<Outlet></Outlet>
+			</main>
 
-		<div className="container mt-4 pt-16 mx-auto">
-			<Outlet></Outlet>
+			<Footer />
 		</div>
-
-		<Footer />
 
 	</>
 }

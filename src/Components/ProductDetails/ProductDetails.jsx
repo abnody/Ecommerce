@@ -38,13 +38,15 @@ export default function ProductDetails() {
     {isLoading?<Loading/>:
         <div className=' my-10 lg:flex items-center'>
             <div className='lg:w-2/5 lg:mx-0 mx-auto max-w-512 px-5'>
-                {/*  */}
+                {product.images.length==1?<div className='my-3'>
+                        <img src={product.images[0]} alt={product.title} className='w-full object-cover rounded-lg' />
+                    </div>: 
                 <Slider {...setting}>
                     {product.images.map( (image , index)=> <div key={index} className='my-3'>
                         <img src={image} alt={product.title} className='w-full object-cover rounded-lg' />
                     </div> )
                     }
-                </Slider>
+                </Slider>}
             </div>
             <div className='lg:w-3/5 px-4 lg:mt-0 lg:mx-0 mx-auto mt-10' >
                 <h2 className='text-slate-100'>{product.title.split(" ",10).join(" ")}</h2>

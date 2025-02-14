@@ -112,3 +112,9 @@ h2 {
   background-color: #3f3f3f !important;
   color:var(--main-color) !important;
 }
+.mini{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%,-50%);
+}

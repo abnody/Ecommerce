@@ -17,7 +17,7 @@ import WishlistContextProvider from './Components/Context/WishlistContext.jsx'
 import Wishlist from './Components/Wishlist/Wishlist.jsx'
 import CheckOut from './Components/CheckOut/Checkout.jsx'
 import AllOrders from './Components/AllOrders/AllOrders.jsx'
-import { QueryClient } from '@tanstack/react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 
 let routers = createBrowserRouter([{
@@ -42,25 +42,28 @@ function App() {
 
   return <>
 
-    <CartContextProvider>
-      <WishlistContextProvider>
-        <RouterProvider router={routers}></RouterProvider>
-        <Toaster
-        toastOptions={{
-          success: {
-            style: {
-              background: '#15803d',
+    <QueryClientProvider client={query}>
+      <CartContextProvider>
+        <WishlistContextProvider>
+          <RouterProvider router={routers}></RouterProvider>
+          <Toaster
+          toastOptions={{
+            success: {
+              style: {
+                background: '#15803d',
+                color:'white'
+              },
             },
-          },
-          error: {
-            style: {
-              background: '#b91c1c',
-              color : 'white',
+            error: {
+              style: {
+                background: '#b91c1c',
+                color : 'white',
+              },
             },
-          },
-        }}/>
-      </WishlistContextProvider>
-    </CartContextProvider>
+          }}/>
+        </WishlistContextProvider>
+      </CartContextProvider>
+    </QueryClientProvider>
 
   </>
 }

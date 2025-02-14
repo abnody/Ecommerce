@@ -19,6 +19,7 @@ export default function ProfileDropdpwn() {
         <div>
             <NavLink to={'/wishlist'} className='block py-1 cursor-pointer hover:text-main duration-150 ' >Wishlist</NavLink>  
             <NavLink to={'/cart'} className='block py-1 cursor-pointer hover:text-main duration-150 ' >Cart</NavLink>
+            <NavLink to={'/allorders'} className='block py-1 cursor-pointer hover:text-main duration-150 ' >Your orders</NavLink>
             <p className='py-1 cursor-pointer hover:text-main duration-150 ' onClick={()=>logout()} >Logout</p>
         </div> :
         <div>

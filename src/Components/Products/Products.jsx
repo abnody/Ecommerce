@@ -6,33 +6,28 @@ import { Link, NavLink } from 'react-router-dom';
 import { CartContext } from '../Context/CartContext';
 import { WishlistContext } from '../Context/WishlistContext';
 import toast from 'react-hot-toast';
+import { useQuery } from '@tanstack/react-query';
 
-export default function Products({id}) {
+export default function Products() {
 
-  const [products, setProducts] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
   let {addToCart} = useContext(CartContext);
-  let{addToWishlist,} = useContext(WishlistContext);
+  let {addToWishlist,} = useContext(WishlistContext);
 
-  async function getProducts() {
-    let {data} = await axios.get(`https://ecommerce.routemisr.com/api/v1/products?page`);
-    setProducts(data.data);
-    
-    setIsLoading(false);
+
+  function getProducts(){
+    return axios.get(`https://ecommerce.routemisr.com/api/v1/products?page`);
   }
-
-
-  useEffect(()=>{
-    getProducts()
-  },[])
-
+  let {data,isLoading,isFetched,isError} = useQuery({
+    queryKey:['products'],
+    queryFn:getProducts
+  })
 
 
   return <>
     { isLoading ? <Loading/> :
     <>
-      <div className='my-10 flex flex-wrap justify-center'>
-        { products.map(product => 
+      <div className='my-10 flex flex-wrap justify-center '>
+        { data?.data.data.map(product => 
 
         <div key={product.id} className=' py-0 px-2 sm:px-2 max-w-64 w-1/2 md:w-1/3 lg:w-1/6'>
           <div className=' product hover:shadow-black hover:shadow-xl bg-[#3f3f3f] rounded-lg relative'>
