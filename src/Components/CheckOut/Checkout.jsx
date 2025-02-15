@@ -47,7 +47,7 @@ export default function CheckOut() {
         });
         setCashIsLoading(false);
         toast.success(data.status);
-        navigate('/allorders')
+        navigate('/Ecommerce/allorders')
         
       } 
       catch (err) {

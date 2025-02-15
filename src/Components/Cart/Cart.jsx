@@ -43,10 +43,10 @@ export default function Cart() {
             <tbody>
             {(cart.data.products).map((product,index) =><React.Fragment key={index}>
               <tr className="bg-[#b3b3b3] md:border-b cursor-pointer border-[#1a1a1a] hover:bg-[#8c8c8c] duration-300" >
-                  <td onClick={()=>navigate(`/productdetails/${product.product.id}`)} className="p-4">
+                  <td onClick={()=>navigate(`/Ecommerce/productdetails/${product.product.id}`)} className="p-4">
                     <img src={product.product.imageCover} className="w-16 md:w-32 max-w-full max-h-full" alt={product.product.title}/>
                   </td>
-                  <td onClick={()=>navigate(`/productdetails/${product.product.id}`)} className="px-6 py-4 font-semibold text-gray-900 "> {product.product.title} </td>
+                  <td onClick={()=>navigate(`/Ecommerce/productdetails/${product.product.id}`)} className="px-6 py-4 font-semibold text-gray-900 "> {product.product.title} </td>
                   <td className="hidden md:table-cell px-3 py-4">
                       <div className="flex items-center">
                           <button onClick={()=>updateQuantity(`${product.product.id}`,product.count-1)} className="inline-flex items-center justify-center p-1 me-3 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full " type="button">
@@ -102,7 +102,7 @@ export default function Cart() {
             <h3 className="text-2xl px-3">
             Total Cart Price: <span className="text-green-700">{cart?.data.totalCartPrice}</span>
             </h3>
-            <button onClick={() => navigate('/checkout')} className="text-white mx-3 bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm px-5 py-2.5">
+            <button onClick={() => navigate('/Ecommerce/checkout')} className="text-white mx-3 bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm px-5 py-2.5">
             CheckOut
             </button>
         </div>

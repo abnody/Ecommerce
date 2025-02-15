@@ -47,7 +47,7 @@ export default function Navbar() {
         className="flex items-center justify-between px-6 py-3 lg:px-8"
         aria-label="Global"
       >
-        <Link to={"/"} className="lg:pe-4">
+        <Link to={"/Ecommerce"} className="lg:pe-4">
           <span className="sr-only">Your Company</span>
           <img src={logo} width={70} alt="" />
         </Link>
@@ -57,19 +57,19 @@ export default function Navbar() {
           </div>
         </div>
         <div className="hidden lg:flex lg:gap-x-5 capitalize lg:px-9 lg:py-3 rounded-3xl lg:bg-[#c8c7c7]">
-          <NavLink to={"/"} className="font-medium text-gray-900">
+          <NavLink to={"Ecommerce/"} className="font-medium text-gray-900">
             home
           </NavLink>
-          <NavLink to={"cart"} className="font-medium text-gray-900">
+          <NavLink to={"Ecommerce/cart"} className="font-medium text-gray-900">
             cart
           </NavLink>
-          <NavLink to={"brands"} className="font-medium text-gray-900">
+          <NavLink to={"Ecommerce/brands"} className="font-medium text-gray-900">
             brands
           </NavLink>
-          <NavLink to={"categories"} className="font-medium text-gray-900">
+          <NavLink to={"Ecommerce/categories"} className="font-medium text-gray-900">
             categories
           </NavLink>
-          <NavLink to={"products"} className="font-medium text-gray-900">
+          <NavLink to={"Ecommerce/products"} className="font-medium text-gray-900">
             products
           </NavLink>
         </div>
@@ -114,19 +114,19 @@ export default function Navbar() {
           <div ref={menuref} className="mt-6 flow-root ">
             <div className="-my-6 divide-y divide-gray-500/10 text-center capitalize">
               <div className="space-y-2 py-6">
-                <NavLink to={"/"} onClick={()=>setIsOpen(false)} className="block border-b-2 border-b-gray-700 py-2 text-base/7 font-medium text-gray-400">
+                <NavLink to={"Ecommerce"} onClick={()=>setIsOpen(false)} className="block border-b-2 border-b-gray-700 py-2 text-base/7 font-medium text-gray-400">
                   home
                 </NavLink>
-                <NavLink to={"cart"}  onClick={()=>setIsOpen(false)} className="block border-b-2 border-b-gray-700 py-2 text-base/7 font-medium text-gray-400">
+                <NavLink to={"Ecommerce/cart"}  onClick={()=>setIsOpen(false)} className="block border-b-2 border-b-gray-700 py-2 text-base/7 font-medium text-gray-400">
                   cart
                 </NavLink>
-                <NavLink to={"brands"}  onClick={()=>setIsOpen(false)} className="block border-b-2 border-b-gray-700 py-2 text-base/7 font-medium text-gray-400">
+                <NavLink to={"Ecommerce/brands"} Ecommerce onClick={()=>setIsOpen(false)} className="block border-b-2 border-b-gray-700 py-2 text-base/7 font-medium text-gray-400">
                   brands
                 </NavLink>
-                <NavLink to={"categories"}  onClick={()=>setIsOpen(false)} className="block border-b-2 border-b-gray-700 py-2 text-base/7 font-medium text-gray-400">
+                <NavLink to={"Ecommerce/categories"}  onClick={()=>setIsOpen(false)} className="block border-b-2 border-b-gray-700 py-2 text-base/7 font-medium text-gray-400">
                   categories
                 </NavLink>
-                <NavLink to={"products"}  onClick={()=>setIsOpen(false)} className="block border-b-2 border-b-gray-700 py-2 text-base/7 font-medium text-gray-400">
+                <NavLink to={"Ecommerce/products"}  onClick={()=>setIsOpen(false)} className="block border-b-2 border-b-gray-700 py-2 text-base/7 font-medium text-gray-400">
                   products
                 </NavLink>
               </div>

@@ -93,7 +93,7 @@ export default function Categories() {
               <i onClick={() => addToWishlist(product.id)} className="fa-xl opacity-0 hover:opacity-100 fa-solid fa-heart cursor-pointer text-red-600 top-7 left-4 absolute transition-all duration-200"></i>
 
               {/* Product Details */}
-              <Link to={`/productdetails/${product.id}`} className="block">
+              <Link to={`/Ecommerce/productdetails/${product.id}`} className="block">
                 <img className="rounded-t-lg w-full" src={product.imageCover} alt={product.title} />
                 <div className="px-1 py-3 text-center">
                   <h5 className="mb-2 text-lg font-bold tracking-tight text-main">{product.slug.split('-', 2).join(' ')}</h5>

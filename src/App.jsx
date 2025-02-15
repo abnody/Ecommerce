@@ -23,16 +23,16 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 let routers = createBrowserRouter([{
   path:'' , element : <Layout/>,children:[
     {index: true , element: <Home/>},
-    {path:'login' , element: <Login/>},
-    {path:'register' , element: <Register/>},
-    {path:'cart' , element: <Cart/>},
-    {path:'brands' , element: <Brands/>},
-    {path:'categories' , element: <Categories/>},
-    {path:'products' , element: <Products id={null}/>},
-    {path:'productdetails/:id' , element: <ProductDetails/>},
-    {path:'wishlist' , element: <Wishlist/>},
-    {path:'checkout' , element: <CheckOut/>},
-    {path:'allorders' , element: <AllOrders/>},
+    {path:'Ecommerce/login' , element: <Login/>},
+    {path:'Ecommerce/register' , element: <Register/>},
+    {path:'Ecommerce/cart' , element: <Cart/>},
+    {path:'Ecommerce/brands' , element: <Brands/>},
+    {path:'Ecommerce/categories' , element: <Categories/>},
+    {path:'Ecommerce/products' , element: <Products id={null}/>},
+    {path:'Ecommerce/productdetails/:id' , element: <ProductDetails/>},
+    {path:'Ecommerce/wishlist' , element: <Wishlist/>},
+    {path:'Ecommerce/checkout' , element: <CheckOut/>},
+    {path:'Ecommerce/allorders' , element: <AllOrders/>},
     {path:'*' , element: <NotFound/>},
   ]
 }])
