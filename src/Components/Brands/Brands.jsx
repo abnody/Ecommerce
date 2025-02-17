@@ -104,7 +104,7 @@ export default function Brands() {
                 <div className="product hover:shadow-black hover:shadow-xl bg-[#3f3f3f] rounded-lg relative">
                   <i onClick={() => addToWishlist(product.id)} className="fa-xl fa-regular fa-heart cursor-pointer text-red-600 top-7 left-4 absolute transition-all duration-200"></i>
                   <i onClick={() => addToWishlist(product.id)} className="fa-xl opacity-0 hover:opacity-100 fa-solid fa-heart cursor-pointer text-red-600 top-7 left-4 absolute transition-all duration-200"></i>
-                  <Link to={`/Ecommerce/productdetails/${product.id}`} className="block">
+                  <Link to={`/productdetails/${product.id}`} className="block">
                     <img className="rounded-t-lg w-full" src={product.imageCover} alt={product.title} />
                     <div className="px-1 py-3 text-center">
                       <h5 className="mb-2 text-lg font-bold tracking-tight text-main">{product.slug.split('-', 2).join(' ')}</h5>

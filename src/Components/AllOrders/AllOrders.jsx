@@ -41,7 +41,7 @@ export default function AllOrders() {
         </div>
           <table className={` ${clicked[index]?'':'hidden'} w-full text-sm text-left rounded-2xl rtl:text-right text-[#1a1a1a]`}>
               <thead className="text-xs text-white uppercase bg-[#1a1a1a] ">
-                  <tr className=''>
+                  <tr className='text-gray-700'>
                       <th scope="col" className="px-16 py-3">
                           <span className="sr-only">Image</span>
                       </th>

@@ -13,7 +13,7 @@ export default function Categories() {
   const { addToCart } = useContext(CartContext);
   const { addToWishlist } = useContext(WishlistContext);
 
-  // ✅ Fetch categories using `useQuery`
+  
   const { data: categories = [], isLoading: isCategoriesLoading, isError: isCategoriesError } = useQuery({
     queryKey: ['categories'],
     queryFn: async () => {
@@ -23,7 +23,6 @@ export default function Categories() {
     staleTime: 1000 * 60 * 5, // Cache for 5 minutes
   });
 
-  // ✅ Fetch products using `useQuery`
   const { data: products = [], isLoading: isProductsLoading, isError: isProductsError } = useQuery({
     queryKey: ['productscat'],
     queryFn: async () => {
@@ -33,11 +32,9 @@ export default function Categories() {
     staleTime: 1000 * 60 * 5,
   });
 
-  // ✅ Scroll functions
   const scrollLeft = () => sliderRef.current?.scrollBy({ left: -500, behavior: 'smooth' });
   const scrollRight = () => sliderRef.current?.scrollBy({ left: 500, behavior: 'smooth' });
 
-  // ✅ Filter products based on selected category
   const filteredProducts = selectedCategoryId
     ? products.filter((product) => product.category._id === selectedCategoryId)
     : products;
@@ -59,7 +56,7 @@ export default function Categories() {
 
   return (
     <div className="relative w-full py-16">
-      {/* Categories Section */}
+      
       <div className="relative">
         <button onClick={scrollLeft} className="absolute left-0 top-1/2 -translate-y-1/2 bg-secondary p-2 rounded-full shadow-md hover:bg-gray-700 transition hidden md:flex">
           <i className="fa-solid fa-chevron-left fa-lg text-2xl text-main"></i>
@@ -83,17 +80,17 @@ export default function Categories() {
         </button>
       </div>
 
-      {/* Products Section */}
+
       <div className="py-10 flex flex-wrap justify-center">
         {filteredProducts.map((product) => (
           <div key={product.id} className="py-0 px-2 sm:px-2 max-w-64 w-1/2 md:w-1/3 lg:w-1/6">
             <div className="product hover:shadow-black hover:shadow-xl bg-[#3f3f3f] rounded-lg relative">
-              {/* Wishlist Icons */}
+              
               <i onClick={() => addToWishlist(product.id)} className="fa-xl fa-regular fa-heart cursor-pointer text-red-600 top-7 left-4 absolute transition-all duration-200"></i>
               <i onClick={() => addToWishlist(product.id)} className="fa-xl opacity-0 hover:opacity-100 fa-solid fa-heart cursor-pointer text-red-600 top-7 left-4 absolute transition-all duration-200"></i>
 
-              {/* Product Details */}
-              <Link to={`/Ecommerce/productdetails/${product.id}`} className="block">
+
+              <Link to={`/productdetails/${product.id}`} className="block">
                 <img className="rounded-t-lg w-full" src={product.imageCover} alt={product.title} />
                 <div className="px-1 py-3 text-center">
                   <h5 className="mb-2 text-lg font-bold tracking-tight text-main">{product.slug.split('-', 2).join(' ')}</h5>
@@ -107,7 +104,7 @@ export default function Categories() {
                 </div>
               </Link>
 
-              {/* Add to Cart Button */}
+
               <div className="px-5">
                 <button onClick={() => addToCart(product.id)} className="block cursor-pointer btn bg-main hover:bg-green-400 rounded-lg text-center w-full mx-auto py-2">
                   Add To Cart
