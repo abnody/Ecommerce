@@ -20,9 +20,9 @@ import AllOrders from './Components/AllOrders/AllOrders.jsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 
-let routers = createBrowserRouter([{
+let routers = createHashRouter([{
   path:'' , element : <Layout/>,children:[
-    {index: true , element: <Home/>},
+    {path: '' , element: <Home/>},
     {path:'login' , element: <Login/>},
     {path:'register' , element: <Register/>},
     {path:'cart' , element: <Cart/>},

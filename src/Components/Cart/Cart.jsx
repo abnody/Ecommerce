@@ -102,7 +102,7 @@ export default function Cart() {
             <h3 className="text-2xl px-3">
             Total Cart Price: <span className="text-green-700">{cart?.data.totalCartPrice}</span>
             </h3>
-            <button onClick={() => navigate('/Ecommerce/checkout')} className="text-white mx-3 bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm px-5 py-2.5">
+            <button onClick={() => navigate('/checkout')} className="text-white mx-3 bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm px-5 py-2.5">
             CheckOut
             </button>
         </div>
