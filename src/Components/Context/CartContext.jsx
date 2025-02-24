@@ -13,21 +13,24 @@ export default function CartContextProvider({children}){
     const [isLoading, setIsLoading] = useState(true);
 
 
-    const headers ={
-        token:localStorage.getItem('userToken')
-    }
+
 
     async function addToCart(productId) {
+        const headers ={
+            token:localStorage.getItem('userToken')
+        }
         try {
             let {data} = await axios.post(`https://ecommerce.routemisr.com/api/v1/cart`,{productId},{headers})
             toast.success("Added Successfuly")
-            
-        } catch (error) {
-            toast.error("You must log in");
+        } catch (error) {toast.error("You must log in first")
         }
     }
 
     async function getCart() {
+        if(localStorage.getItem('userToken')){
+        const headers ={
+            token:localStorage.getItem('userToken')
+        }
         try {
             let {data} = await axios.get(`https://ecommerce.routemisr.com/api/v1/cart`,{headers})
             setCart(data);
@@ -35,11 +38,14 @@ export default function CartContextProvider({children}){
 
         } catch (error) {
             setIsLoading(false);
-        }
+        }}
     }
 
 
     async function updateQuantity(id,num) {
+        const headers ={
+            token:localStorage.getItem('userToken')
+        }
         try {
             let {data} = await axios.put(`https://ecommerce.routemisr.com/api/v1/cart/${id}`,
             {"count" :`${num}`}
@@ -53,6 +59,9 @@ export default function CartContextProvider({children}){
 
 
     async function deleteProduct(id) {
+        const headers ={
+            token:localStorage.getItem('userToken')
+        }
         try {
             let {data} = await axios.delete(`https://ecommerce.routemisr.com/api/v1/cart/${id}`,{headers})
             setCart(data);
@@ -64,7 +73,8 @@ export default function CartContextProvider({children}){
 
       useEffect(()=>{
         getCart();
-      },[])
+      },[cart])
+      
     return <CartContext.Provider value={{addToCart,getCart,cart,isLoading,updateQuantity,deleteProduct,setIsLoading}}>
         {children}
     </CartContext.Provider>

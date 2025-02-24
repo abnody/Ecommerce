@@ -20,10 +20,6 @@ export default function UpdatePassword() {
     catch (err) {
       setError(err.response.data.message);
       setIsLoading(false);
-      console.log(err);
-      console.log(localStorage);
-      console.log(formik.values);
-      
     }
   }
 

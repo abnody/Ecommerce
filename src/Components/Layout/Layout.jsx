@@ -9,7 +9,7 @@ export default function Layout() {
 		<div className='flex flex-col min-h-screen relative'>
 			<Navbar />
 
-			<main className="container mt-4 pt-16 mx-auto flex-grow ">
+			<main className="w-full max-sm max-md max-lg max-xl mt-4 pt-16 mx-auto flex-grow ">
 				<Outlet></Outlet>
 			</main>
 

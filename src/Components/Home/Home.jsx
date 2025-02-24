@@ -9,6 +9,5 @@ export default function Home() {
     <MainSlider/>
     <CategorySlider/>
     <Products/>
-  
   </>
 }

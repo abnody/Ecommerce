@@ -21,11 +21,12 @@ export default function CheckOut() {
     if(paymentType==="card"){
       setCardIsLoading(true);
       try {
-        let {data} = await axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cart.cartId}?url=https://abnody.github.io/Ecommerce/`,{
+        let {data} = await axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cart.cartId}?url=${encodeURIComponent("https://abnody.github.io/Ecommerce/#")}`,{
           shippingAddress
         },{
           headers:{token:localStorage.getItem('userToken')}
         });
+        
         setCardIsLoading(false);
         toast.success(data.status);
         location.href = data.session.url;

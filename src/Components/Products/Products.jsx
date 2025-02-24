@@ -8,15 +8,21 @@ import { useQuery } from '@tanstack/react-query';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 
 export default function Products() {
-  let { addToCart } = useContext(CartContext);
-  let { addToWishlist, wishlist, deleteProduct } = useContext(WishlistContext);
+  let { getCart,addToCart } = useContext(CartContext);
+  let { getWishlist,addToWishlist, wishlist, deleteProduct } = useContext(WishlistContext);
 
 
   const [wishlistIds, setWishlistIds] = useState(new Set(wishlist?.data?.map(item => item.id) || []));
 
   const { scrollY } = useScroll();
   const [scrollDirection, setScrollDirection] = React.useState("up");
+  useEffect(() => {
+    getWishlist();
+  }, []);
 
+  useEffect(()=>{
+    getCart();
+  })
   useMotionValueEvent(scrollY, "change", (current) => {
     const diff = current - scrollY.getPrevious();
     setScrollDirection(diff > 0 ? "down" : "up");
@@ -31,13 +37,13 @@ export default function Products() {
     queryFn: getProducts,
   });
 
-  // Handle wishlist toggle with instant UI update
+  
   const handleWishlistToggle = async (productId) => {
     if (wishlistIds.has(productId)) {
-      setWishlistIds(prev => new Set([...prev].filter(id => id !== productId))); // Remove instantly
+      setWishlistIds(prev => new Set([...prev].filter(id => id !== productId)));
       await deleteProduct(productId);
     } else {
-      setWishlistIds(prev => new Set(prev.add(productId))); // Add instantly
+      setWishlistIds(prev => new Set(prev.add(productId)));
       await addToWishlist(productId);
     }
   };
@@ -90,7 +96,7 @@ export default function Products() {
                   </Link>
                   <div className="px-5">
                     <div
-                      onClick={() => addToCart(product.id)}
+                      onClick={() => {addToCart(product.id)}}
                       className="block cursor-pointer btn bg-main hover:bg-green-400 rounded-lg text-center w-full mx-auto py-2"
                     >
                       Add To Cart

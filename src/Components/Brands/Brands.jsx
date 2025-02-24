@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Loading from '../Loading/Loading';
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
@@ -11,8 +11,15 @@ import { AnimatePresence , motion} from 'framer-motion';
 export default function Brands() {
   const [id, setId] = useState(null);
   const sliderRef = useRef(null);
-  let { addToCart } = useContext(CartContext);
-  let { addToWishlist } = useContext(WishlistContext);
+  let { getCart,addToCart } = useContext(CartContext);
+  let { getWishlist,addToWishlist } = useContext(WishlistContext);
+    useEffect(() => {
+      getWishlist();
+    }, []);
+  
+    useEffect(()=>{
+      getCart();
+    })
 
   // Fetch brands using React Query
   const { data: brands, isLoading: brandsLoading } = useQuery({

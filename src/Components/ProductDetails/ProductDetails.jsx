@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { CartContext } from '../Context/CartContext';
 import { Helmet } from 'react-helmet';
+import toast from 'react-hot-toast';
   
 
 export default function ProductDetails() {
@@ -77,7 +78,7 @@ export default function ProductDetails() {
                     </span>
                 </div>
 
-                <button onClick={()=>addToCart(product?.id)} type="button" className="text-white bg-main font-medium rounded-lg text-lg px-5 py-2.5 text-center me-2 my-2 w-full">Add To Cart</button>
+                <button onClick={() => {!localStorage.getItem('userToken') && toast.error("You must log in") ; addToCart(product?.id)}} type="button" className="text-white bg-main font-medium rounded-lg text-lg px-5 py-2.5 text-center me-2 my-2 w-full">Add To Cart</button>
             </div>
         </div>
     }

@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -11,8 +11,15 @@ import { AnimatePresence , motion} from 'motion/react';
 export default function Categories() {
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const sliderRef = useRef(null);
-  const { addToCart } = useContext(CartContext);
-  const { addToWishlist } = useContext(WishlistContext);
+  const { getCart,addToCart } = useContext(CartContext);
+  const { getWishlist,addToWishlist } = useContext(WishlistContext);
+    useEffect(() => {
+      getWishlist();
+    }, []);
+  
+    useEffect(()=>{
+      getCart();
+    })
 
   
   const { data: categories = [], isLoading: isCategoriesLoading, isError: isCategoriesError } = useQuery({
@@ -65,7 +72,6 @@ export default function Categories() {
   }
 
   function catFilter(array) {
-    console.log(array);
     
     return selectedCategoryId ? array.filter((product) => product.category._id === selectedCategoryId) : array;
   }
