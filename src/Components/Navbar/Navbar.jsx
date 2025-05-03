@@ -110,7 +110,7 @@ export default function Navbar() {
                 <NavLink to={"/cart"} onClick={() => setIsOpen(false)} className="block border-b-2 border-b-gray-700 py-2 text-base/7 font-medium text-[white]">
                   cart
                 </NavLink>
-                <NavLink to={"/brands"} Ecommerce onClick={() => setIsOpen(false)} className="block border-b-2 border-b-gray-700 py-2 text-base/7 font-medium text-[white]">
+                <NavLink to={"/brands"} onClick={() => setIsOpen(false)} className="block border-b-2 border-b-gray-700 py-2 text-base/7 font-medium text-[white]">
                   brands
                 </NavLink>
                 <NavLink to={"/categories"} onClick={() => setIsOpen(false)} className="block border-b-2 border-b-gray-700 py-2 text-base/7 font-medium text-[white]">
