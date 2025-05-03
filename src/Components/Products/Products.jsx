@@ -8,8 +8,8 @@ import { useQuery } from '@tanstack/react-query';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 
 export default function Products() {
-  let { getCart,addToCart } = useContext(CartContext);
-  let { getWishlist,addToWishlist, wishlist, deleteProduct } = useContext(WishlistContext);
+  let { getCart, addToCart } = useContext(CartContext);
+  let { getWishlist, addToWishlist, wishlist, deleteProduct } = useContext(WishlistContext);
 
 
   const [wishlistIds, setWishlistIds] = useState(new Set(wishlist?.data?.map(item => item.id) || []));
@@ -20,7 +20,7 @@ export default function Products() {
     getWishlist();
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     getCart();
   })
   useMotionValueEvent(scrollY, "change", (current) => {
@@ -37,7 +37,7 @@ export default function Products() {
     queryFn: getProducts,
   });
 
-  
+
   const handleWishlistToggle = async (productId) => {
     if (wishlistIds.has(productId)) {
       setWishlistIds(prev => new Set([...prev].filter(id => id !== productId)));
@@ -53,7 +53,7 @@ export default function Products() {
       {isLoading ? (
         <Loading />
       ) : (
-        <div className="my-10 flex flex-wrap justify-center">
+        <div className="my-10 abnd-container flex flex-wrap justify-center">
           {data?.data?.data.map((product) => {
             const isInWishlist = wishlistIds.has(product.id);
 
@@ -65,22 +65,39 @@ export default function Products() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                <div className="product hover:shadow-black hover:shadow-xl bg-[#3f3f3f] rounded-lg relative">
-                  <i
-                    onClick={() => handleWishlistToggle(product.id)}
-                    className={`fa-xl cursor-pointer top-7 left-4 absolute transition-all duration-200 ${
-                      isInWishlist ? "fa-solid fa-heart text-red-600" : "fa-regular fa-heart text-gray-400 hover:text-red-600"
-                    }`}
-                  ></i>
+                <div className="product rounded-lg relative mb-9 ">
+
+
 
                   <Link to={`/productdetails/${product.id}`} className="block">
-                    <img
-                      className="rounded-t-lg w-full"
-                      src={product.imageCover}
-                      alt={product.title}
-                    />
+                    <div className='overflow-hidden rounded-lg relative'>
+                      <img
+                        className="product-img rounded-lg w-full"
+                        src={product.imageCover}
+                        alt={product.title}
+                      />
+                      <div className='list bottom-2 bg-opacity-50 left-2 absolute flex gap-4 bg-black rounded-lg px-4 py-1 z-50 opacity-0'>
+                        <i
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            handleWishlistToggle(product.id);
+                          }}
+                          className={`cursor-pointer  transition-all duration-200  text-xl ${isInWishlist ? "fa-solid fa-heart text-red-700" : "fa-regular fa-heart text-white hover:text-red-700"
+                            }`}
+                        ></i>
+                        <i
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            addToCart(product.id);
+                          }}
+                          className="fa-solid fa-cart-shopping cursor-pointer text-xl text-white hover:text-green-400"
+                        ></i>
+                      </div>
+                    </div>
                     <div className="px-1 py-3 text-center">
-                      <h2 className="mb-2 text-lg font-bold tracking-tight text-main">
+                      <h2 className="mb-2 text-lg font-bold tracking-tight text-gray-200 font-1">
                         {product.slug.split('-', 2).join(' ')}
                       </h2>
                       <div className="flex justify-between text-gray-400 px-2 my-1">
@@ -94,14 +111,6 @@ export default function Products() {
                       </div>
                     </div>
                   </Link>
-                  <div className="px-5">
-                    <div
-                      onClick={() => {addToCart(product.id)}}
-                      className="block cursor-pointer btn bg-main hover:bg-green-400 rounded-lg text-center w-full mx-auto py-2"
-                    >
-                      Add To Cart
-                    </div>
-                  </div>
                 </div>
               </motion.div>
             );

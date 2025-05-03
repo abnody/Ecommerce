@@ -12,30 +12,30 @@ export default function Navbar() {
 
 
   useEffect(() => {
-    let handler = (e)=> {
-      if(!menuref.current.contains(e.target)){
+    let handler = (e) => {
+      if (!menuref.current.contains(e.target)) {
         setIsOpen(false);
       }
     };
-    
+
     document.addEventListener("mousedown", handler);
-  
-    return()=>{
-      document.removeEventListener("mousedown",handler);
+
+    return () => {
+      document.removeEventListener("mousedown", handler);
     }
 
   });
   useEffect(() => {
-    let handler = (e)=> {
-      if(!profileref.current.contains(e.target)){
+    let handler = (e) => {
+      if (!profileref.current.contains(e.target)) {
         setProfileOpen(false);
       }
     };
-    
+
     document.addEventListener("mousedown", handler);
-  
-    return()=>{
-      document.removeEventListener("mousedown",handler);
+
+    return () => {
+      document.removeEventListener("mousedown", handler);
     }
 
   });
@@ -43,58 +43,49 @@ export default function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 nav" ref={navbarRef}>
       <nav
-        className="flex items-center justify-between px-6 py-3 lg:px-8"
+        className="flex items-center justify-between px-7 py-4 lg:px-8 bg-gray-800/80 backdrop-blur-xl"
         aria-label="Global"
       >
-        <Link to={"/"} className="lg:pe-4">
-          <span className="sr-only">Your Company</span>
-          <img src={logo} width={70} alt="" />
+        <Link to={"/"} className="lg:pe-4 flex ">
+          <h2 className="text-2xl font-1 font-bold text-white">ShopScoop </h2>
+          <span className="bg-[#00f8ff] rounded-full w-1 h-1 inline-block place-self-end mb-[0.4rem] ml-1" ></span>
         </Link>
-        <div onClick={() => setIsOpen(!isOpen)} className="flex lg:hidden">
-          <div className="-m-2.5 text-lg inline-flex items-center justify-center rounded-3xl px-4 py-2 text-white bg-secondary hover:cursor-pointer">
-            Menu
-          </div>
-        </div>
-        <div className="hidden lg:flex lg:gap-x-5 capitalize lg:px-9 lg:py-3 rounded-3xl lg:bg-[#c8c7c7]">
-          <NavLink to={"/"} className="font-medium text-gray-900">
+        <div className="hidden lg:flex lg:gap-x-5 capitalize lg:px-9  rounded-3xl">
+          <NavLink to={"/"} className=" text-lg text-white">
             home
           </NavLink>
-          <NavLink to={"cart"} className="font-medium text-gray-900">
-            cart
-          </NavLink>
-          <NavLink to={"brands"} className="font-medium text-gray-900">
+          <NavLink to={"brands"} className=" text-lg text-white">
             brands
           </NavLink>
-          <NavLink to={"categories"} className="font-medium text-gray-900">
+          <NavLink to={"categories"} className=" text-lg text-white">
             categories
           </NavLink>
-          <NavLink to={"products"} className="font-medium text-gray-900">
+          <NavLink to={"products"} className=" text-lg text-white">
             products
           </NavLink>
         </div>
-        <div className="flex relative" >
-          
+        <div className="flex relative gap-x-5" >
+          <NavLink to={"cart"} className="font-medium text-white">
+            <i className="fa-solid fa-cart-shopping fa-xl cursor-pointer text-white hover:text-green-400"></i>
+          </NavLink>
           <div ref={profileref} className="flex-col flex-grow-0 justify-items-center">
-            <div
-              className="bg-secondary p-3 rounded-full w-fit"
-              onClick={() => setProfileOpen(!profileOpen)}
-            >
-              <div className="cursor-pointer fa-solid fa-user fa-2xl text-main"></div>
-            </div>
-            <div onClick={()=>setProfileOpen(false)}>{profileOpen ? <ProfileDropdown /> : null}</div>
+            <div className="cursor-pointer fa-solid fa-user fa-xl text-white" onClick={() => setProfileOpen(!profileOpen)}></div>
+            <div onClick={() => setProfileOpen(false)}>{profileOpen ? <ProfileDropdown /> : null}</div>
+          </div>
+          <div onClick={() => setIsOpen(!isOpen)} className="flex lg:hidden">
+            <i className="fa-solid fa-bars cursor-pointer text-xl text-white hover:text-[#00f8ff]"></i>
           </div>
         </div>
       </nav>
-
       {/* Mobile menu */}
       <div className={isOpen ? "lg:hidden" : "hidden"} role="dialog" aria-modal="true">
         <div className="fixed inset-0 z-50" />
-        <div className="fixed inset-x-4 top-5 z-50 origin-top rounded-3xl bg-secondary p-5 ring-1 ring-zinc-900/5 duration-150 dark:bg-zinc-900 dark:ring-zinc-800">
+        <div className="fixed end-0 top-15 z-50 origin-top h-screen bg-secondary p-5 ring-1 ring-zinc-900/5 duration-150 dark:bg-zinc-900 dark:ring-zinc-800">
           <div className="flex items-center justify-between">
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="-m-2.5 bg-transparent hover:bg-main hover:text-secondary rounded-md p-2.5 text-main"
+              className="-m-2.5 bg-transparent hover:bg-white hover:text-secondary rounded-md p-2.5 text-white"
             >
               <span className="sr-only">Close menu</span>
               <svg
@@ -112,20 +103,20 @@ export default function Navbar() {
           </div>
           <div ref={menuref} className="mt-6 flow-root ">
             <div className="-my-6 divide-y divide-gray-500/10 text-center capitalize">
-              <div className="space-y-2 py-6">
-                <NavLink to={"/"} onClick={()=>setIsOpen(false)} className="block border-b-2 border-b-gray-700 py-2 text-base/7 font-medium text-gray-400">
+              <div className="w-72 space-y-6 py-6">
+                <NavLink to={"/"} onClick={() => setIsOpen(false)} className="block border-b-2 border-b-gray-700 py-2 text-base/7 font-medium text-[white]">
                   home
                 </NavLink>
-                <NavLink to={"/cart"}  onClick={()=>setIsOpen(false)} className="block border-b-2 border-b-gray-700 py-2 text-base/7 font-medium text-gray-400">
+                <NavLink to={"/cart"} onClick={() => setIsOpen(false)} className="block border-b-2 border-b-gray-700 py-2 text-base/7 font-medium text-[white]">
                   cart
                 </NavLink>
-                <NavLink to={"/brands"} Ecommerce onClick={()=>setIsOpen(false)} className="block border-b-2 border-b-gray-700 py-2 text-base/7 font-medium text-gray-400">
+                <NavLink to={"/brands"} Ecommerce onClick={() => setIsOpen(false)} className="block border-b-2 border-b-gray-700 py-2 text-base/7 font-medium text-[white]">
                   brands
                 </NavLink>
-                <NavLink to={"/categories"}  onClick={()=>setIsOpen(false)} className="block border-b-2 border-b-gray-700 py-2 text-base/7 font-medium text-gray-400">
+                <NavLink to={"/categories"} onClick={() => setIsOpen(false)} className="block border-b-2 border-b-gray-700 py-2 text-base/7 font-medium text-[white]">
                   categories
                 </NavLink>
-                <NavLink to={"/products"}  onClick={()=>setIsOpen(false)} className="block border-b-2 border-b-gray-700 py-2 text-base/7 font-medium text-gray-400">
+                <NavLink to={"/products"} onClick={() => setIsOpen(false)} className="block border-b-2 border-b-gray-700 py-2 text-base/7 font-medium text-[white]">
                   products
                 </NavLink>
               </div>

@@ -5,7 +5,7 @@ export default function Loading() {
   return <>
     <div className=' flex justify-center items-center h-screen'>
         <PropagateLoader
-        color="#0aad0a"
+        color="#00f8ff"
         size={20}/>
     </div>
   </>

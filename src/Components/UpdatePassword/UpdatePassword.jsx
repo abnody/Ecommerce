@@ -3,80 +3,166 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup'
 import axios from 'axios';
 import { useNavigate, NavLink } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export default function UpdatePassword() {
-
   const [Error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   let navigate = useNavigate()
 
-  async function updatePassword(){
+  async function updatePassword() {
     setIsLoading(true);
     try {
-      let {data} = await axios.put('https://ecommerce.routemisr.com/api/v1/users/changeMyPassword',formik.values,{ headers:{token : localStorage.getItem('userToken')}});
+      let { data } = await axios.put('https://ecommerce.routemisr.com/api/v1/users/changeMyPassword', formik.values, {
+        headers: { token: localStorage.getItem('userToken') }
+      });
       setIsLoading(false);
       navigate('/')
-    } 
+    }
     catch (err) {
       setError(err.response.data.message);
       setIsLoading(false);
     }
   }
 
-
-    const validationSchema = Yup.object({
-      currentPassword : Yup.string().required("current password is required"),
-      password : Yup.string().required("This field is required"),
-      rePassword : Yup.string().required("This field is required").oneOf([Yup.ref('password'),null],"Must matches Password"),
-    })
+  const validationSchema = Yup.object({
+    currentPassword: Yup.string().required("Current password is required"),
+    password: Yup.string()
+      .required("New password is required")
+      .min(8, "Password must be at least 8 characters")
+      .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/,
+        "Password must include uppercase, lowercase, number, and special character"),
+    rePassword: Yup.string()
+      .required("Please confirm your new password")
+      .oneOf([Yup.ref('password'), null], "Passwords must match"),
+  })
 
   const formik = useFormik({
-    initialValues:{
-      currentPassword:'',
+    initialValues: {
+      currentPassword: '',
       password: '',
-      rePassword:''
+      rePassword: ''
     },
     validationSchema,
     onSubmit: updatePassword
   })
 
-  return <>
-  
-  <form className="max-w-sm mx-auto py-7" onSubmit={formik.handleSubmit}>
+  return (
+    <div className="abnd-container min-h-[calc(100vh-4rem)] flex items-center justify-center py-12">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="w-full max-w-md"
+      >
+        <div className="bg-[#1a1a1a] rounded-xl p-8 shadow-lg">
+          <h2 className="text-2xl font-bold text-white mb-6 text-center">Update Password</h2>
 
-    <div className="mb-5">
-      <label htmlFor="currentPassword" className="block mb-2 text-sm font-medium text-white">current password</label>
-      <input type="password" id="currentPassword" value={formik.values.currentPassword} onChange={formik.handleChange} onBlur={formik.handleBlur}
-      className="shadow-xs bg-green-50 border border-green-300 text-green-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
-    </div>
-    {formik.touched.currentPassword&&formik.errors.currentPassword?
-    <div className="p-4 mb-5 -mt-3 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">{formik.errors.currentPassword}</div>
-    :null}
+          <form onSubmit={formik.handleSubmit} className="space-y-6">
+            {/* Current Password */}
+            <div>
+              <label htmlFor="currentPassword" className="block text-sm font-medium text-gray-300 mb-2">
+                Current Password
+              </label>
+              <input
+                type="password"
+                id="currentPassword"
+                value={formik.values.currentPassword}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                className={`w-full px-4 py-3 rounded-lg bg-gray-800 border ${formik.touched.currentPassword && formik.errors.currentPassword
+                  ? 'border-red-500'
+                  : 'border-gray-700'
+                  } text-white focus:outline-none focus:ring-2 focus:ring-[#00f8ff] focus:border-transparent transition-colors`}
+                placeholder="Enter your current password"
+              />
+              {formik.touched.currentPassword && formik.errors.currentPassword && (
+                <p className="mt-2 text-sm text-red-500">{formik.errors.currentPassword}</p>
+              )}
+            </div>
 
-    <div className="mb-5">
-      <label htmlFor="password" className="block mb-2 text-sm font-medium text-white">new password</label>
-      <input type="password" id="password" value={formik.values.password} onChange={formik.handleChange} onBlur={formik.handleBlur}
-      className="shadow-xs bg-green-50 border border-green-300 text-green-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
-    </div>
-    {formik.touched.password&&formik.errors.password?
-    <div className="p-4 mb-5 -mt-3 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">{formik.errors.password}</div>
-    :null}
+            {/* New Password */}
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-2">
+                New Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                className={`w-full px-4 py-3 rounded-lg bg-gray-800 border ${formik.touched.password && formik.errors.password
+                  ? 'border-red-500'
+                  : 'border-gray-700'
+                  } text-white focus:outline-none focus:ring-2 focus:ring-[#00f8ff] focus:border-transparent transition-colors`}
+                placeholder="Enter your new password"
+              />
+              {formik.touched.password && formik.errors.password && (
+                <p className="mt-2 text-sm text-red-500">{formik.errors.password}</p>
+              )}
+            </div>
 
-    <div className="mb-5">
-      <label htmlFor="rePassword" className="block mb-2 text-sm font-medium text-white">Repassword</label>
-      <input type="password" id="rePassword" value={formik.values.rePassword} onChange={formik.handleChange} onBlur={formik.handleBlur}
-      className="shadow-xs bg-green-50 border border-green-300 text-green-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
-    </div>
-    {formik.touched.rePassword&&formik.errors.rePassword?
-    <div className="p-4 mb-5 -mt-3 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">{formik.errors.rePassword}</div>
-    :null}
+            {/* Confirm New Password */}
+            <div>
+              <label htmlFor="rePassword" className="block text-sm font-medium text-gray-300 mb-2">
+                Confirm New Password
+              </label>
+              <input
+                type="password"
+                id="rePassword"
+                value={formik.values.rePassword}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                className={`w-full px-4 py-3 rounded-lg bg-gray-800 border ${formik.touched.rePassword && formik.errors.rePassword
+                  ? 'border-red-500'
+                  : 'border-gray-700'
+                  } text-white focus:outline-none focus:ring-2 focus:ring-[#00f8ff] focus:border-transparent transition-colors`}
+                placeholder="Confirm your new password"
+              />
+              {formik.touched.rePassword && formik.errors.rePassword && (
+                <p className="mt-2 text-sm text-red-500">{formik.errors.rePassword}</p>
+              )}
+            </div>
 
-    <div className='flex items-center'>
-      {!isLoading &&<button type="submit" className="text-white bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">updatePassword</button>}
-      {isLoading &&<button type="button" className="text-white bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center "><i className='fas fa-spinner fa-spin fa-lg'></i></button>}
-      {Error && <p className='text-red-600 ps-3'> {Error} </p>}
+            {/* Error Message */}
+            {Error && (
+              <div className="p-4 bg-red-500/10 border border-red-500 rounded-lg">
+                <p className="text-sm text-red-500">{Error}</p>
+              </div>
+            )}
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={isLoading}
+              className={`w-full py-3 px-4 rounded-lg font-medium text-white transition-colors ${isLoading
+                ? 'bg-gray-600 cursor-not-allowed'
+                : 'bg-[#00f8ff] hover:bg-[#00d4d9]'
+                }`}
+            >
+              {isLoading ? (
+                <span className="flex items-center justify-center">
+                  <i className="fas fa-spinner fa-spin mr-2"></i>
+                  Updating...
+                </span>
+              ) : <p className='text-black'>Update Password</p>
+                
+              }
+            </button>
+
+            {/* Back Link */}
+            <div className="text-center">
+              <NavLink
+                to="/"
+                className="text-gray-400 hover:text-[#00f8ff] transition-colors text-sm"
+              >
+                Back to Home
+              </NavLink>
+            </div>
+          </form>
+        </div>
+      </motion.div>
     </div>
-  </form>
-  
-  </>
+  );
 }

@@ -2,11 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cal+Sans&family=Kalam:wght@300;400;700&family=Roboto+Slab:wght@100..900&display=swap');
 
 body{
-  background: #3f3f3f;
+  /* background: #3f3f3f; */
+  background: #000;
   /* font-family: var(--font-family); */
 }
 .nav{
@@ -16,8 +17,27 @@ body{
   --main-color: #0aad0a;
   --light-color: #f0f3f2;
   --shadow: rgba(145, 158, 171, .2) 0px 2px 4px -1px, rgba(145, 158, 171, .14) 0px 4px 5px 0px, rgba(145, 158, 171, .12) 0px 1px 10px 0px;
-  --font-family: 'Encode Sans Expanded', sans-serif;
+  --font-1 : "Cal Sans", sans-serif;
+  --font-2 : "Roboto Slab", serif;
+  --font-3 : "Bebas Neue", sans-serif;
+  --font-4 : "Kalam", cursive;
   --rating-color: #ffc908;
+}
+
+.font-1{
+  font-family: var(--font-1);
+}
+
+.font-2{
+  font-family: var(--font-2);
+}
+
+.font-3{
+  font-family: var(--font-3);
+}
+
+.font-4{
+  font-family: var(--font-4);
 }
 
 .scrollbar-hide::-webkit-scrollbar {
@@ -30,7 +50,7 @@ a{
   transition: all 0.2s;
 }
 .a:hover{
-  color: var(--main-color);
+  color: #00f8ff;
 }
 .rating-color {
   color: var(--rating-color);
@@ -47,12 +67,14 @@ a{
   transition: all 0.7s;
 }
 
-.product:hover {
-  transform: scale(1.2);
-  position: relative;
-  z-index: 333;
+.product:hover .product-img {
+  transform: scale(1.1);
+  transition: all 0.7s;
 }
-
+.product:hover .list{
+  opacity: 1;
+  transition: all 0.7s;
+}
 .product .btn {
   transition:  opacity 0.7s , background-color 0.4s !important;
   transform: translateY(-15%);
@@ -89,7 +111,8 @@ h2 {
 
 
 .active{
-  color: var(--main-color);
+  color: #00f8ff;
+  transition: all 0.3s;
 }
 
 .card{
@@ -101,8 +124,7 @@ h2 {
   height: 120px;
 }
 .clicked{
-  background-color: #3f3f3f !important;
-  color:var(--main-color) !important;
+  background-color: #000 !important;
 }
 .mini{
   position: absolute;
@@ -114,3 +136,25 @@ h2 {
 .max-md{max-width: 768px;}
 .max-lg{max-width: 1024px;}
 .max-xl{max-width: 1280px;}
+
+.abnd-container {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .abnd-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .abnd-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
